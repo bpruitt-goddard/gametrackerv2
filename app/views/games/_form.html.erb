@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :game_type %>
-    <%= form.text_field :game_type %>
+    <%= form.select(:game_type, options_for_select(Game.game_types.map {|k,v| [k.humanize.capitalize, v]})) %>
   </div>
 
   <div class="actions">
