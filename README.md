@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An application for tracking board game plays and displaying past results in various statistics (win rates, streakes, best player for game, etc).
 
-Things you may want to cover:
+## Build/Install
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Build the docker images `docker-compose build`
+1. Boot the app using `docker-compose up`
+1. With the app running from (2), create the databes with `docker-compose run web rake db:create`, then run any pending database migrations with `docker-compose run web rake db:migrate`.
