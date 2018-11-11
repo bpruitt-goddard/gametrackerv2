@@ -6,8 +6,8 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Bgg</th>
-      <th>Game type</th>
+      <th>Bgg Id</th>
+      <th>Game Type</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,7 +17,7 @@
       <tr>
         <td><%= game.name %></td>
         <td><%= game.bgg_id %></td>
-        <td><%= game.game_type %></td>
+        <td><%= game.game_type.capitalize %></td>
         <td><%= link_to 'Show', game %></td>
         <td><%= link_to 'Edit', edit_game_path(game) %></td>
         <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>

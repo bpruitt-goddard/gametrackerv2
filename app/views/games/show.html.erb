@@ -6,13 +6,13 @@
 </p>
 
 <p>
-  <strong>Bgg:</strong>
+  <strong>Bgg Id:</strong>
   <%= @game.bgg_id %>
 </p>
 
 <p>
   <strong>Game type:</strong>
-  <%= @game.game_type %>
+  <%= @game.game_type.capitalize %>
 </p>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
