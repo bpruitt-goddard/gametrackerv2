@@ -14,3 +14,9 @@ development:
 test:
   <<: *default
   database: myapp_test
+
+production:
+  <<: *default
+  database: GameTracker_production
+  username: GameTracker
+  password: <%= ENV['GAMETRACKER_DATABASE_PASSWORD'] %>
