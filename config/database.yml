@@ -13,6 +13,7 @@ development:
 
 test:
   <<: *default
+  host: <%= ENV['TRAVIS'] ? 'localhost' : 'db' %>
   database: myapp_test
 
 production:

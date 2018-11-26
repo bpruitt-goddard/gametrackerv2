@@ -3,9 +3,9 @@
 one:
   name: MyString
   bgg_id: 
-  game_type: MyString
+  game_type: competitive
 
 two:
   name: MyString
   bgg_id: 
-  game_type: MyString
+  game_type: cooperative
