@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/bpruitt-goddard/gametrackerv2.svg?branch=master)](https://travis-ci.org/bpruitt-goddard/gametrackerv2)
+![Deploy Status](https://heroku-badges.herokuapp.com/?app=boardgame-tracker)
 
 # README
 
