@@ -39,6 +39,7 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy game" do
+    @game = games(:three)
     assert_difference('Game.count', -1) do
       delete game_url(@game)
     end
