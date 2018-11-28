@@ -39,6 +39,7 @@ class PlayersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy player" do
+    @player = players(:three)
     assert_difference('Player.count', -1) do
       delete player_url(@player)
     end

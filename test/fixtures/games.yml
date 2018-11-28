@@ -9,3 +9,8 @@ two:
   name: MyString
   bgg_id: 
   game_type: cooperative
+
+three:
+  name: MyString
+  bgg_id: 
+  game_type: mixed
