@@ -69,6 +69,6 @@ class SessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def session_params
-      params.fetch(:session, {})
+      params.require(:session).permit(:game_id)
     end
 end
