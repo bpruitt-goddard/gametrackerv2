@@ -32,4 +32,25 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to sessions_url
   end
+
+  test "should create session" do
+    player_one = players(:one)
+
+    session_params = {
+      session: { 
+          game_id: @session.game_id,
+          session_players_attributes: [
+            { player_id: player_one.id, score: 5, placing: 1}
+          ] 
+        }
+    }
+
+    assert_difference('Session.count') do
+      assert_difference('SessionPlayer.count') do
+        post sessions_url, params: session_params
+      end
+    end
+
+    assert_redirected_to session_url(Session.last)
+  end
 end

@@ -10,6 +10,41 @@
       </ul>
     </div>
   <% end %>
+ 
+    Players:
+
+    <table>
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Score</th>
+          <th>Placing</th>
+          <th>Team</th>
+          <th colspan="3">Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%= form.fields_for :session_players do |session_player| %>        
+          <tr>
+            <td><%= session_player.text_field :player_id %></td>
+            <td><%= session_player.text_field :score %></td>
+            <td><%= session_player.text_field :placing %></td>
+            <td><%= session_player.text_field :team %></td>
+            <td>Delete Me</td>
+          </tr>
+
+        <% end %>
+        
+      </tbody>
+    </table>
+ 
+
+  <div class="field">
+    <%= form.label :notes %>
+    <%= form.text_field :notes %>
+  </div>
+
 
   <div class="actions">
     <%= form.submit %>
