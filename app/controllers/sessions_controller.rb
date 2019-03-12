@@ -25,7 +25,6 @@ class SessionsController < ApplicationController
   # POST /sessions.json
   def create
     @session = Session.new(session_params)
-
     respond_to do |format|
       if @session.save
         format.html { redirect_to @session, notice: 'Session was successfully created.' }
@@ -69,6 +68,8 @@ class SessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def session_params
-      params.require(:session).permit(:game_id, :played, :notes, :session_players_attributes => [:id, :placing, :score, :team, :player_id])
+      params
+        .require(:session)
+        .permit(:game_id, :played, :notes, session_players_attributes: SessionPlayer.attribute_names.map(&:to_sym).push(:destroy))
     end
 end
