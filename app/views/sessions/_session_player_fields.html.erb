@@ -1,5 +1,5 @@
 <tr class='nested-fields'>
-    <td><%= f.text_field :player_id %></td>
+    <td><%= f.collection_select :player_id, Player.order(:name), :id, :name, include_blank: true %></td> 
     <td><%= f.text_field :score %></td>
     <td><%= f.text_field :placing %></td>
     <td><%= f.text_field :team %></td>
