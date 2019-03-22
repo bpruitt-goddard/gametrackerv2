@@ -42,7 +42,7 @@
 
   <div>
     <%= form.label :game_id %>
-    <%= form.text_field :game_id %>
+    <%= form.collection_select :game_id, Game.order(:name), :id, :name, include_blank: true %>
   </div>
 
 
