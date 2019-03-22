@@ -1,4 +1,41 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <strong>Game:</strong>
+  <%= @session.game.name %>
+</p>
+
+<p>
+  <strong>Played:</strong>
+  <%= @session.played %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @session.notes %>
+</p>
+
+<h3>Players:</h3>
+<table>
+<thead>
+    <tr>
+        <th>Player</th>
+        <th>Score</th>
+        <th>Placing</th>
+        <th>Team</th>
+    </tr>
+</thead>
+<tbody>
+    <% @session.session_players.each do |player| %>
+      <tr>
+        <td><%= player.player.name %></td>
+        <td><%= player.score %></td>
+        <td><%= player.placing %></td>
+        <td><%= player.team %></td>
+    <% end %>
+</tbody>
+</table>
+ <br/>
+
 <%= link_to 'Edit', edit_session_path(@session) %> |
 <%= link_to 'Back', sessions_path %>

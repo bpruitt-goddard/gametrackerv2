@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   # GET /sessions
   # GET /sessions.json
   def index
-    @sessions = Session.all
+    @sessions = Session.order(played: :desc).take(10)
   end
 
   # GET /sessions/1
