@@ -35,16 +35,21 @@
   </div>
   <br/>
   <br/>
-  <div>
-    <%= form.label :notes %>
-    <%= form.text_field :notes %>
-  </div>
 
   <div>
     <%= form.label :game_id %>
     <%= form.collection_select :game_id, Game.order(:name), :id, :name, include_blank: true %>
   </div>
 
+  <div>
+    <%= form.label :played %>
+    <%= form.date_field :played, as: :date %>
+  </div>
+
+  <div>
+    <%= form.label :notes %>
+    <%= form.text_field :notes %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>
