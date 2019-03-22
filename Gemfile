@@ -27,6 +27,11 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Use jquery for cocoon
+gem 'jquery-rails'
+# Use Cocoon for nested forms
+gem 'cocoon', '~> 1.2.12'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
