@@ -10,10 +10,10 @@
   </head>
 
   <nav class="topnav">
-    <a href="/games/">Games</a> |
-    <a href="/players/">Players</a> |
-    <a href="/games/">Games</a> |
-    <a href="/sessions/new">New Session</a>
+    <%= link_to "Games", games_path %> |
+    <%= link_to "Players", players_path %> |
+    <%= link_to "Sessions", sessions_path %> |
+    <%= link_to "New Session", new_session_path %>
     <div class="topnav-right">
       <%= link_to "Sign Up", new_user_path %>
     </div>
