@@ -9,12 +9,31 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <nav>
-    <a href="/games/">Games</a> |
-    <a href="/players/">Players</a> |
-    <a href="/games/">Games</a> |
-    <a href="/sessions/new">New Session</a>
+  <nav class="topnav">
+    <%= link_to "Games", games_path %> |
+    <%= link_to "Players", players_path %> |
+    <%= link_to "Sessions", sessions_path %>
+    <% if current_user %>
+      | <%= link_to "New Session", new_session_path %>
+    <% end %>
+    <div class="topnav-right">
+      <% if current_user %>
+        Logged in as <%= current_user.email %>.
+        <%= link_to "Log Out", logout_path %>
+      <% else %>
+        <%= link_to "Sign Up", signup_path %> or
+        <%= link_to "Log In", login_path %>
+      <% end %>
+    </div>
   </nav>
+
+  <div class="container">
+    <% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %>">
+        <%= value %>
+      </div>
+    <% end %>
+  </div>
 
   <body>
     <%= yield %>
