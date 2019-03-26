@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'signup', to: 'users#new', as: 'signup'
+  get 'login', to: 'user_sessions#new', as: 'login'
+  get 'logout', to: 'user_sessions#destroy', as: 'logout'
+
   resources :users
   resources :players
   resources :games
