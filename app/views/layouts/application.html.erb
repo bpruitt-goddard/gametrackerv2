@@ -17,6 +17,7 @@
     <div class="topnav-right">
       <% if current_user %>
         Logged in as <%= current_user.email %>.
+        <%= link_to "Log Out", user_session_path("current"), method: "delete" %>
       <% else %>
         <%= link_to "Sign Up", new_user_path %> or
         <%= link_to "Log In", new_user_session_path %>
