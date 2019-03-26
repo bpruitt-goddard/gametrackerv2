@@ -2,8 +2,8 @@
 
 one:
   email: MyString
-  password_digest: MyString
+  password_digest: <%= default_password_digest %>
 
 two:
   email: MyString
-  password_digest: MyString
+  password_digest: <%= default_password_digest %>
