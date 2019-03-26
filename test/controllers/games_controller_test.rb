@@ -3,6 +3,10 @@ require 'test_helper'
 class GamesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @game = games(:one)
+
+    # Login
+    user = users(:one)    
+    post user_sessions_path, params: { email: user.email, password: default_password }    
   end
 
   test "should get index" do
