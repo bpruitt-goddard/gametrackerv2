@@ -45,4 +45,15 @@ class PlayerStatsTest < ActiveSupport::TestCase
 
       assert_includes [losing_player1, losing_player2], game.worst_player.player
     end
+
+    test "should return nil as worst player when all players are tied for stats" do
+      game = create_game
+      player1 = create_player
+      player2 = create_player
+
+      create_session(game, winning_players: [player1])
+      create_session(game, winning_players: [player2])
+
+      assert_nil game.worst_player
+    end
 end
