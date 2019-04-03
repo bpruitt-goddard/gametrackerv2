@@ -6,6 +6,16 @@ module Games
         return to_stats(game_totals.first)
       end
 
+      def worst_player
+        stats = to_stats(game_totals.last)
+
+        if (!best_player.nil? && !stats.nil? && best_player.win_percent == stats.win_percent)
+          return nil
+        else
+          return stats
+        end
+      end
+
       private
         def game_totals
           # Have to declare win_percentage because (wins / plays) doesn't work in ordering
