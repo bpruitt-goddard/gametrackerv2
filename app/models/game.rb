@@ -4,4 +4,6 @@ class Game < ApplicationRecord
         cooperative: "cooperative",
         mixed: "mixed"
     }
+
+    include Games::PlayerStats
 end

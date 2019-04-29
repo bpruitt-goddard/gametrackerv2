@@ -11,9 +11,53 @@
 </p>
 
 <p>
-  <strong>Game type:</strong>
+  <strong>Game Type:</strong>
   <%= @game.game_type.capitalize %>
 </p>
+
+<% unless @game.best_player.nil? %>
+  <p>
+    <strong>Best Player:</strong>
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Win %</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @game.best_player.player.name %></td>
+        <td><%= @game.best_player.win_percent.round(4) * 100 %></td>
+      </tr>
+    </tbody>
+  </table>
+
+<% end %>
+
+<% unless @game.worst_player.nil? %>
+  <p>
+    <strong>Worst Player:</strong>
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Win %</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @game.worst_player.player.name %></td>
+        <td><%= @game.worst_player.win_percent.round(4) * 100 %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
