@@ -49,4 +49,27 @@ class GameStatsTest < ActiveSupport::TestCase
         assert_equal game, best_game.game
         assert_equal 1, best_game.win_percent
     end
+
+    test "should return a game as worst game" do
+        player = create_player
+        game = create_game
+        create_session(game, losing_players: [player])
+
+        worst_game = player.worst_game
+
+        assert_equal game, worst_game.game
+        assert_equal 0, worst_game.win_percent
+    end
+
+    test "should calculate win % correctly for worst game" do
+        player = create_player
+        game = create_game()
+        3.times { create_session(game, losing_players: [player]) }
+        create_session(game, winning_players: [player])
+
+        worst_game = player.worst_game
+
+        assert_equal game, worst_game.game
+        assert_equal 0.25, worst_game.win_percent
+    end
 end
