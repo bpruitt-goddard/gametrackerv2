@@ -28,6 +28,7 @@ module Games
                     else 0 end) as wins,
                  (sum(CASE "placing" WHEN 1 THEN 1 ELSE 0 END) / count(*)::float) as win_percentage')
               .where('game_id = ?', id)
+              .where('session_players.player_id > 0')
               .group('session_players.player_id')
               .order('win_percentage desc')
         end
