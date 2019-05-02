@@ -5,6 +5,11 @@
   <%= @player.name %>
 </p>
 
+<p>
+  <strong>Overall Win Rate:</strong>
+  <%= @player.win_rate.round(4) * 100 %>%
+</p>
+
 
 <% unless @player.best_game.nil? %>
 

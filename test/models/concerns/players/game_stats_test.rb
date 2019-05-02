@@ -96,4 +96,65 @@ class GameStatsTest < ActiveSupport::TestCase
         assert_equal game, worst_game.game
         assert_equal 0, worst_game.win_percent
     end
+
+    test "should return 0 for win rate when no games have been played" do
+        player = create_player
+
+        win_rate = player.win_rate
+
+        assert_equal 0, win_rate
+    end
+
+    test "should return 0 for win rate when no games have been won" do
+        player = create_player
+        game = create_game
+        create_session(game, losing_players: [player])
+
+        win_rate = player.win_rate
+
+        assert_equal 0, win_rate
+    end
+
+    test "should return 1 for win rate when no games have been lost" do
+        player = create_player
+        game = create_game
+        create_session(game, winning_players: [player])
+
+        win_rate = player.win_rate
+
+        assert_equal 1, win_rate
+    end
+
+    test "should calculate all sessions of a game for win rate" do
+        player = create_player
+        game = create_game
+        create_session(game, losing_players: [player])
+        create_session(game, winning_players: [player])
+
+        win_rate = player.win_rate
+
+        assert_equal 0.5, win_rate
+    end
+
+    test "should calculate all sessions for win rate" do
+        player = create_player
+        game1 = create_game
+        game2 = create_game('game2')
+        create_session(game1, losing_players: [player])
+        create_session(game2, winning_players: [player])
+
+        win_rate = player.win_rate
+
+        assert_equal 0.5, win_rate
+    end
+
+    test "should calculate win rate based upon best placing when playing multiple players" do
+        player = create_player
+        game = create_game
+        create_session(game, losing_players: [player], winning_players: [player])
+
+        win_rate = player.win_rate
+
+        assert_equal 1, win_rate
+    end
 end
