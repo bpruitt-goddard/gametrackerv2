@@ -38,7 +38,21 @@ module Players
                                .first
     
             return to_percent(query_result)
-          end
+        end
+
+        def win_rate
+            subquery = SessionPlayer.joins(:session)
+                           .group('sessions.id')
+                           .where('player_id = ?', id)
+                           .select('CASE MIN("placing") WHEN 1 THEN 1 ELSE 0 END as didWin ')
+    
+            query_result = SessionPlayer
+                .from(subquery)
+                .select('sum(subquery.didWin) / count(*)::float as win_percent')
+    
+            return 0 if query_result.blank?
+            return query_result.to_a[0]['win_percent'] ||= 0
+        end
 
         private
             def to_percent (game_total)
