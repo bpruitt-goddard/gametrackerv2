@@ -28,7 +28,7 @@
 <tbody>
     <% @session.session_players.order(:placing).each do |player| %>
       <tr>
-        <td><%= player.player.name %></td>
+        <td><%= link_to player.player.name, player.player %></td>
         <td><%= player.score %></td>
         <td><%= player.placing %></td>
         <td><%= player.team %></td>
