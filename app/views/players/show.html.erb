@@ -5,5 +5,52 @@
   <%= @player.name %>
 </p>
 
+
+<% unless @player.best_game.nil? %>
+
+<p>
+  <strong>Best Game:</strong>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Win %</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= link_to @player.best_game.game.name, @player.best_game.game %></td>
+      <td><%= @player.best_game.win_percent.round(4) * 100 %></td>
+    </tr>
+  </tbody>
+</table>
+
+<% end %>
+
+<% unless @player.worst_game.nil? %>
+
+<p>
+  <strong>Worst Game:</strong>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Win %</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= link_to @player.worst_game.game.name, @player.worst_game.game %></td>
+      <td><%= @player.worst_game.win_percent.round(4) * 100 %></td>
+    </tr>
+  </tbody>
+</table>
+
+<% end %>
+
 <%= link_to 'Edit', edit_player_path(@player) %> |
 <%= link_to 'Back', players_path %>
