@@ -15,10 +15,9 @@
   <tbody>
     <% @games.each do |game| %>
       <tr>
-        <td><%= game.name %></td>
+        <td><%= link_to game.name, game %></td>
         <td><%= game.bgg_id %></td>
         <td><%= game.game_type.capitalize %></td>
-        <td><%= link_to 'Show', game %></td>
         <td><%= link_to 'Edit', edit_game_path(game) %></td>
         <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

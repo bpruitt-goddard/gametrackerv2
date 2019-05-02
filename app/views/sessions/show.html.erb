@@ -2,7 +2,7 @@
 
 <p>
   <strong>Game:</strong>
-  <%= @session.game.name %>
+  <%= link_to @session.game.name, @session.game %>
 </p>
 
 <p>
@@ -26,9 +26,9 @@
     </tr>
 </thead>
 <tbody>
-    <% @session.session_players.each do |player| %>
+    <% @session.session_players.order(:placing).each do |player| %>
       <tr>
-        <td><%= player.player.name %></td>
+        <td><%= link_to player.player.name, player.player %></td>
         <td><%= player.score %></td>
         <td><%= player.placing %></td>
         <td><%= player.team %></td>

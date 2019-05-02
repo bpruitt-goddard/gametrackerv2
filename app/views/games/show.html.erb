@@ -29,7 +29,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= @game.best_player.player.name %></td>
+        <td><%= link_to @game.best_player.player.name, @game.best_player.player %></td>
         <td><%= @game.best_player.win_percent.round(4) * 100 %></td>
       </tr>
     </tbody>
@@ -51,7 +51,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= @game.worst_player.player.name %></td>
+        <td><%= link_to @game.worst_player.player.name, @game.worst_player.player %></td>
         <td><%= @game.worst_player.win_percent.round(4) * 100 %></td>
       </tr>
     </tbody>
