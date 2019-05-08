@@ -31,14 +31,20 @@
  
   <div>
     <%= link_to_add_association 'add player', form, :session_players, 
-        data: { association_insertion_method: :append, association_insertion_node: '#players'} %>
+      data: { association_insertion_method: :append, association_insertion_node: '#players'} %>
   </div>
   <br/>
   <br/>
 
   <div>
     <%= form.label :game_id %>
-    <%= form.collection_select :game_id, Game.order(:name), :id, :name, include_blank: true %>
+    <%= form.hidden_field :game_id %>
+    <input id="selectedGame" list="games" />
+    <datalist id="games">
+      <% Game.order(:name).each do |game| %>
+        <option data-value="<%= game.id%>" value="<%= game.name %>"></option>
+      <% end %>
+    </datalist>
   </div>
 
   <div>
