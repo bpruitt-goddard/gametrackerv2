@@ -39,7 +39,7 @@
   <div>
     <%= f.label :game_id %>
     <%= f.hidden_field :game_id %>
-    <input id="selectedGame" list="games" />
+    <input id="selectedGame" list="games" value="<%= session&.game&.name %>" />
     <datalist id="games">
       <% Game.order(:name).each do |game| %>
         <option data-value="<%= game.id%>" value="<%= game.name %>"></option>
