@@ -1,4 +1,4 @@
-<%= form_with(model: session, local: true) do |form| %>
+<%= form_with(model: session, local: true) do |f| %>
   <% if session.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(session.errors.count, "error") %> prohibited this session from being saved:</h2>
@@ -23,23 +23,23 @@
         </tr>
       </thead>
       <tbody id='players'>
-        <%= form.fields_for :session_players do |session_player| %>
-          <%= render 'session_player_fields', :form => session_player %>
+        <%= f.fields_for :session_players do |session_player| %>
+          <%= render 'session_player_fields', :f => session_player %>
         <% end %>
       </tbody>
     </table>
  
   <div>
-    <%= link_to_add_association 'add player', form, :session_players, 
+    <%= link_to_add_association 'add player', f, :session_players, 
       data: { association_insertion_method: :append, association_insertion_node: '#players'} %>
   </div>
   <br/>
   <br/>
 
   <div>
-    <%= form.label :game_id %>
-    <%= form.hidden_field :game_id %>
-    <input id="selectedGame" list="games" />
+    <%= f.label :game_id %>
+    <%= f.hidden_field :game_id %>
+    <input id="selectedGame" list="games" value="<%= session&.game&.name %>" />
     <datalist id="games">
       <% Game.order(:name).each do |game| %>
         <option data-value="<%= game.id%>" value="<%= game.name %>"></option>
@@ -48,17 +48,17 @@
   </div>
 
   <div>
-    <%= form.label :played %>
-    <%= form.date_field :played, as: :date %>
+    <%= f.label :played %>
+    <%= f.date_field :played, as: :date %>
   </div>
 
   <div>
-    <%= form.label :notes %>
-    <%= form.text_field :notes %>
+    <%= f.label :notes %>
+    <%= f.text_field :notes %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>
 
