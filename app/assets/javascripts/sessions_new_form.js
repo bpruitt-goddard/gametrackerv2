@@ -1,12 +1,16 @@
-$(document).ready(function() {
-
+$(document).on('turbolinks:load', function() {
+    
+    //Make the dropdown properly selectable
     var data = {};
     $("#games option").each(function(i,el) {  
        data[$(el).data("value")] = $(el).val();
     });
-    
+
     $("#selectedGame").on('input', function () {
-        var inputGameName = this.value;
+        setHiddenGameIdValue(this.value);
+    });
+
+    function setHiddenGameIdValue(inputGameName) {
         var selectedGame = $('#games').find('option').filter(function(){
             return this.value == inputGameName;
         });
@@ -16,5 +20,5 @@ $(document).ready(function() {
             console.log(gameId);
             $('#session_game_id').val(gameId);    
         }
-    });
+    }
 });
