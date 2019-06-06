@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# Use jquery for cocoon
+# Use jquery for cocoon and bootstrap
 gem 'jquery-rails'
 # Use Cocoon for nested forms
 gem 'cocoon', '~> 1.2.12'
@@ -40,6 +40,9 @@ gem 'cocoon', '~> 1.2.12'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+
+# Better/Responsive UI
+gem 'bootstrap', '~> 4.3.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

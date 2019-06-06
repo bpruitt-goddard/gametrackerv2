@@ -1,14 +1,12 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Games</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
       <th>Bgg Id</th>
       <th>Game Type</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -18,8 +16,12 @@
         <td><%= link_to game.name, game %></td>
         <td><%= game.bgg_id %></td>
         <td><%= game.game_type.capitalize %></td>
-        <td><%= link_to 'Edit', edit_game_path(game) %></td>
-        <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <nav class="nav">
+            <%= link_to 'Edit', edit_game_path(game), class: "nav-link py-0" %>
+            <%= link_to 'Destroy', game, class: "nav-link py-0", method: :delete, data: { confirm: 'Are you sure?' } %>
+          </nav>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -11,19 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group col-3">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group col-2">
     <%= form.label :bgg_id %>
-    <%= form.number_field :bgg_id %>
+    <%= form.number_field :bgg_id, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group col-2">
     <%= form.label :game_type %>
-    <%= form.select(:game_type, options_for_select(Game.game_types.map {|k,v| [k.humanize.capitalize, v]})) %>
+    <%= form.select(:game_type, options_for_select(Game.game_types.map {|k,v| [k.humanize.capitalize, v]}), {}, { :class => 'form-control'}) %>
   </div>
 
   <div class="actions">

@@ -12,14 +12,14 @@
   <% end %>
  
     <h3>Players:</h3>
-    <table>
+    <table class="table table-striped">
       <thead>
         <tr>
           <th>Player</th>
           <th>Score</th>
           <th>Placing</th>
           <th>Team</th>
-          <th>Action</th>
+          <th></th>
         </tr>
       </thead>
       <tbody id='players'>
@@ -31,15 +31,17 @@
  
   <div>
     <%= link_to_add_association 'add player', f, :session_players, 
-      data: { association_insertion_method: :append, association_insertion_node: '#players'} %>
+      data: { association_insertion_method: :append, association_insertion_node: '#players'}, class: "nav-link" %>
   </div>
   <br/>
   <br/>
 
-  <div>
+
+
+  <div class="form-group col-3">
     <%= f.label :game_id %>
     <%= f.hidden_field :game_id %>
-    <input id="selectedGame" list="games" value="<%= session&.game&.name %>" />
+    <input id="selectedGame" list="games" value="<%= session&.game&.name %>" class="form-control" placeholder="Select Game" />
     <datalist id="games">
       <% Game.order(:name).each do |game| %>
         <option data-value="<%= game.id%>" value="<%= game.name %>"></option>
@@ -47,12 +49,12 @@
     </datalist>
   </div>
 
-  <div>
+  <div class="form-group col-1">
     <%= f.label :played %>
     <%= f.date_field :played, as: :date %>
   </div>
 
-  <div>
+  <div class="form-group col-3">
     <%= f.label :notes %>
     <%= f.text_field :notes %>
   </div>
