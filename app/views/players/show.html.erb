@@ -1,59 +1,66 @@
-<p>
-  <strong>Name:</strong>
+<h1 class="text-center">
   <%= @player.name %>
-</p>
+</h1>
 
-<p>
-  <strong>Overall Win Rate:</strong>
-  <%= @player.win_rate.round(4) * 100 %>%
-</p>
 
+<div class="container">
+  <div class="row">
+    <div class="col-md font-weight-bold">
+      Overall Win Rate
+    </div>
+    <div class="col-md">
+      <td><%= number_with_precision((@player.win_rate * 100), precision: 2, strip_insignificant_zeros: true) %></td>%
+    </div>
+  </div>
 
 <% unless @player.best_game.nil? %>
 
-<p>
-  <strong>Best Game:</strong>
-</p>
+  <div class="row">
+    <div class="col-md-4">
+      <table class="table table-bordered">
+        <caption class="caption-top-bold">Best Game</caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Win %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= link_to @player.best_game.game.name, @player.best_game.game %></td>
+            <td><%= number_with_precision((@player.best_game.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %></td>
+          </tr>
+        </tbody>
+      </table>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Win %</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= link_to @player.best_game.game.name, @player.best_game.game %></td>
-      <td><%= @player.best_game.win_percent.round(4) * 100 %></td>
-    </tr>
-  </tbody>
-</table>
+    </div>
+  </div>
 
 <% end %>
 
 <% unless @player.worst_game.nil? %>
-
-<p>
-  <strong>Worst Game:</strong>
-</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Win %</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= link_to @player.worst_game.game.name, @player.worst_game.game %></td>
-      <td><%= @player.worst_game.win_percent.round(4) * 100 %></td>
-    </tr>
-  </tbody>
-</table>
-
+  <div class="row">
+    <div class="col-md-4">
+      <table class="table table-bordered">
+        <caption class="caption-top-bold">Worst Game</caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Win %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= link_to @player.worst_game.game.name, @player.worst_game.game %></td>
+            <td><%= number_with_precision((@player.worst_game.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 <% end %>
+
+</div>
 
 <%= link_to 'Edit', edit_player_path(@player) %> |
 <%= link_to 'Back', players_path %>

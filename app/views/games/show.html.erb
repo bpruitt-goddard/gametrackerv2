@@ -1,61 +1,70 @@
-<p>
-  <strong>Name:</strong>
+<h1 class="text-center">
   <%= @game.name %>
-</p>
+</h1>
 
-<p>
-  <strong>Bgg Id:</strong>
-  <%= @game.bgg_id %>
-</p>
-
-<p>
-  <strong>Game Type:</strong>
-  <%= @game.game_type.capitalize %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 font-weight-bold">
+      Bgg Id:
+    </div>
+    <div class="col-md-6">
+      <%= @game.bgg_id %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 font-weight-bold">
+      Game Type:
+    </div>
+    <div class="col-md-6">
+      <%= @game.game_type.capitalize %>
+    </div>
+  </div>
 
 <% unless @game.best_player.nil? %>
-  <p>
-    <strong>Best Player:</strong>
-  </p>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Win %</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= link_to @game.best_player.player.name, @game.best_player.player %></td>
-        <td><%= @game.best_player.win_percent.round(4) * 100 %></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-md-4">
+      <table class="table table-bordered">
+        <caption class="caption-top-bold">Best Player</caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Win %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= link_to @game.best_player.player.name, @game.best_player.player %></td>
+            <td><%= number_with_precision((@game.best_player.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
 <% end %>
 
 <% unless @game.worst_player.nil? %>
-  <p>
-    <strong>Worst Player:</strong>
-  </p>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Win %</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= link_to @game.worst_player.player.name, @game.worst_player.player %></td>
-        <td><%= @game.worst_player.win_percent.round(4) * 100 %></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-md-4">
+      <table class="table table-bordered">
+        <caption class="caption-top-bold">Worst Player</caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Win %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= link_to @game.worst_player.player.name, @game.worst_player.player %></td>
+            <td><%= number_with_precision((@game.worst_player.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 <% end %>
-
+</div>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
 <%= link_to 'Back', games_path %>
