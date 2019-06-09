@@ -34,7 +34,7 @@
         <tbody>
           <tr>
             <td><%= link_to @game.best_player.player.name, @game.best_player.player %></td>
-            <td><%= @game.best_player.win_percent.round(4) * 100 %></td>
+            <td><%= number_with_precision((@game.best_player.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %></td>
           </tr>
         </tbody>
       </table>
@@ -57,7 +57,7 @@
         <tbody>
           <tr>
             <td><%= link_to @game.worst_player.player.name, @game.worst_player.player %></td>
-            <td><%= @game.worst_player.win_percent.round(4) * 100 %></td>
+            <td><%= number_with_precision((@game.worst_player.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %></td>
           </tr>
         </tbody>
       </table>

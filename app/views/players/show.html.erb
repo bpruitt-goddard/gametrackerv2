@@ -9,7 +9,7 @@
       Overall Win Rate
     </div>
     <div class="col-md">
-      <%= (@player.win_rate * 100).round(2) %>%
+      <td><%= number_with_precision((@player.win_rate * 100), precision: 2, strip_insignificant_zeros: true) %></td>%
     </div>
   </div>
 
@@ -28,7 +28,7 @@
         <tbody>
           <tr>
             <td><%= link_to @player.best_game.game.name, @player.best_game.game %></td>
-            <td><%= (@player.best_game.win_percent * 100).round(2) %></td>
+            <td><%= number_with_precision((@player.best_game.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %></td>
           </tr>
         </tbody>
       </table>
@@ -52,7 +52,7 @@
         <tbody>
           <tr>
             <td><%= link_to @player.worst_game.game.name, @player.worst_game.game %></td>
-            <td><%= (@player.worst_game.win_percent * 100).round(2) %></td>
+            <td><%= number_with_precision((@player.worst_game.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %></td>
           </tr>
         </tbody>
       </table>
