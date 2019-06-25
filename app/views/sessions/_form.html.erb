@@ -38,7 +38,7 @@
 
 
 
-  <div class="form-group col-3">
+  <div class="form-group col-12 col-md-3">
     <%= f.label :game_id %>
     <%= f.hidden_field :game_id %>
     <input id="selectedGame" list="games" value="<%= session&.game&.name %>" class="form-control" placeholder="Select Game" />
@@ -54,9 +54,9 @@
     <%= f.date_field :played, as: :date %>
   </div>
 
-  <div class="form-group col-3">
+  <div class="form-group col-12 col-md-4">
     <%= f.label :notes %>
-    <%= f.text_field :notes %>
+    <%= f.text_field :notes, class: "form-control" %>
   </div>
 
   <div class="actions">
