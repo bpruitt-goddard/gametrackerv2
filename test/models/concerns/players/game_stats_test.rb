@@ -8,10 +8,36 @@ class GameStatsTest < ActiveSupport::TestCase
         game = create_game
         create_session(game, winning_players: [player])
 
-        best_game = player.best_game
+        best_games = player.best_games
 
+        assert_equal 1, best_games.count
+        best_game = best_games.first
         assert_equal game, best_game.game
         assert_equal 1, best_game.win_percent
+    end
+
+    test "should return top 3 games for best game" do
+        player = create_player
+        game1 = create_game
+        game2 = create_game('game2')
+        game3 = create_game('game3')
+        create_session(game1, winning_players: [player])
+        create_session(game2, winning_players: [player])
+        create_session(game2, losing_players: [player])
+        create_session(game3, losing_players: [player])
+
+        best_games = player.best_games
+
+        assert_equal 3, best_games.count
+        best_game = best_games.first
+        assert_equal game1, best_game.game
+        assert_equal 1, best_game.win_percent
+        second_best = best_games[1]
+        assert_equal game2, second_best.game
+        assert_equal 0.5, second_best.win_percent
+        third_best = best_games[2]
+        assert_equal game3, third_best.game
+        assert_equal 0, third_best.win_percent
     end
 
     test "should calculate win % correctly for best game" do
@@ -20,8 +46,10 @@ class GameStatsTest < ActiveSupport::TestCase
         3.times { create_session(game, winning_players: [player]) }
         create_session(game, losing_players: [player])
 
-        best_game = player.best_game
+        best_games = player.best_games
 
+        assert_equal 1, best_games.count
+        best_game = best_games.first
         assert_equal game, best_game.game
         assert_equal 0.75, best_game.win_percent
     end
@@ -33,8 +61,9 @@ class GameStatsTest < ActiveSupport::TestCase
         create_session(game_one, winning_players: [player])
         create_session(game_two, winning_players: [player])
 
-        best_game = player.best_game
+        best_games = player.best_games
 
+        best_game = best_games.first
         assert_includes [game_one, game_two], best_game.game
         assert_equal 1, best_game.win_percent
     end
@@ -44,8 +73,10 @@ class GameStatsTest < ActiveSupport::TestCase
         game = create_game
         create_session(game, winning_players: [player], losing_players: [player])
 
-        best_game = player.best_game
+        best_games = player.best_games
 
+        assert_equal 1, best_games.count
+        best_game = best_games.first
         assert_equal game, best_game.game
         assert_equal 1, best_game.win_percent
     end
