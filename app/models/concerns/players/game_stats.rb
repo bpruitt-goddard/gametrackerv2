@@ -1,8 +1,9 @@
 module Players
     module GameStats
         extend ActiveSupport::Concern
-
-        def best_game
+        RESULT_COUNT = 3
+        
+        def best_games
             subquery = SessionPlayer.joins(:session)
                        .group('sessions.id, sessions.game_id')
                        .where('player_id = ?', id)
@@ -14,15 +15,14 @@ module Players
                         .group('game_id')
                         .select('game_id,
                             sum(subquery.didWin) / count(*)::float as win_percentage,
-                            count(*) as count,
-                            sum(subquery.didWin) as win_count')
-                        .order('win_percentage desc')
-                        .first
+                            count(*) as count')
+                        .order('win_percentage desc, count desc')
+                        .take(RESULT_COUNT)
 
-            return to_percent(query_result)
+            return query_result.map{|game_total| to_percent(game_total)}
         end
 
-        def worst_game
+        def worst_games
             subquery = SessionPlayer.joins(:session)
                            .group('sessions.id, sessions.game_id')
                            .where('player_id = ?', id)
@@ -33,11 +33,12 @@ module Players
             query_result = Game.from(subquery)
                                .group('game_id')
                                .select('game_id,
-                             sum(subquery.didWin) / count(*)::float as win_percentage')
-                               .order('win_percentage asc')
-                               .first
+                             sum(subquery.didWin) / count(*)::float as win_percentage,
+                             count(*) as count')
+                               .order('win_percentage asc, count desc')
+                               .take(RESULT_COUNT)
     
-            return to_percent(query_result)
+            return query_result.map{|game_total| to_percent(game_total)}
         end
 
         def win_rate
@@ -60,6 +61,7 @@ module Players
                 game_stats = GameWinPercent.new
                 game_stats.win_percent = game_total.win_percentage
                 game_stats.game = Game.find(game_total.game_id)
+                game_stats.play_count = game_total.count
                 return game_stats
             end
     end

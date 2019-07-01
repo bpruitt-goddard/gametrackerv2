@@ -13,23 +13,27 @@
     </div>
   </div>
 
-<% unless @player.best_game.nil? %>
+<% unless @player.best_games.nil? %>
 
   <div class="row">
     <div class="col-md-4">
       <table class="table table-bordered">
-        <caption class="caption-top-bold">Best Game</caption>
+        <caption class="caption-top-bold">Best Games</caption>
         <thead>
           <tr>
             <th>Name</th>
             <th>Win %</th>
+            <th>Play Count</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><%= link_to @player.best_game.game.name, @player.best_game.game %></td>
-            <td><%= number_with_precision((@player.best_game.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %></td>
-          </tr>
+          <% @player.best_games.each do |best_game| %>
+            <tr>
+              <td><%= link_to best_game.game.name, best_game.game %></td>
+              <td><%= number_with_precision((best_game.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %></td>
+              <td><%= best_game.play_count %></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
 
@@ -38,22 +42,26 @@
 
 <% end %>
 
-<% unless @player.worst_game.nil? %>
+<% unless @player.worst_games.nil? %>
   <div class="row">
     <div class="col-md-4">
       <table class="table table-bordered">
-        <caption class="caption-top-bold">Worst Game</caption>
+        <caption class="caption-top-bold">Worst Games</caption>
         <thead>
           <tr>
             <th>Name</th>
             <th>Win %</th>
+            <th>Play Count</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><%= link_to @player.worst_game.game.name, @player.worst_game.game %></td>
-            <td><%= number_with_precision((@player.worst_game.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %></td>
-          </tr>
+          <% @player.worst_games.each do |worst_game| %>
+            <tr>
+              <td><%= link_to worst_game.game.name, worst_game.game %></td>
+              <td><%= number_with_precision((worst_game.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %></td>
+              <td><%= worst_game.play_count %></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>

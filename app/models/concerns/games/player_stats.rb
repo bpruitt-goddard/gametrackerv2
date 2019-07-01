@@ -1,19 +1,11 @@
 module Games
     module PlayerStats
         extend ActiveSupport::Concern
+      
+      RESULT_COUNT = 3
 
-      def best_player
-        return to_stats(game_totals.first)
-      end
-
-      def worst_player
-        stats = to_stats(game_totals.last)
-
-        if (!best_player.nil? && !stats.nil? && best_player.win_percent == stats.win_percent)
-          return nil
-        else
-          return stats
-        end
+      def best_players
+        return game_totals.take(RESULT_COUNT).map{|game_total| to_stats(game_total)}
       end
 
       private
@@ -22,7 +14,7 @@ module Games
           # In win_percentage calculation, have to cast one operand to float to ensure float result
           Session.joins(:session_players)
               .select('session_players.player_id,
-                 count(*) as plays,
+                 count(*) as count,
                  sum(case "placing"
                     when 1 then 1
                     else 0 end) as wins,
@@ -30,7 +22,7 @@ module Games
               .where('game_id = ?', id)
               .where('session_players.player_id > 0')
               .group('session_players.player_id')
-              .order('win_percentage desc')
+              .order('win_percentage desc, count desc')
         end
 
         def to_stats (game_total)
@@ -38,6 +30,7 @@ module Games
           player_stats = PlayerWinPercent.new
           player_stats.win_percent = game_total.win_percentage
           player_stats.player = Player.find(game_total.player_id)
+          player_stats.play_count = game_total.count
           return player_stats
         end
     end
