@@ -2,6 +2,7 @@ module Players
     module GameStats
         extend ActiveSupport::Concern
         RESULT_COUNT = 3
+        
         def best_games
             subquery = SessionPlayer.joins(:session)
                        .group('sessions.id, sessions.game_id')
@@ -34,7 +35,7 @@ module Players
                                .select('game_id,
                              sum(subquery.didWin) / count(*)::float as win_percentage,
                              count(*) as count')
-                               .order('win_percentage asc')
+                               .order('win_percentage asc, count desc')
                                .take(RESULT_COUNT)
     
             return query_result.map{|game_total| to_percent(game_total)}

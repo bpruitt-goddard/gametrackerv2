@@ -88,7 +88,6 @@ class GameStatsTest < ActiveSupport::TestCase
         assert_equal game_two, best_game.game
         assert_equal 1, best_game.win_percent
         assert_equal 2, best_game.play_count
-
     end
 
     test "should choose best placing in game when playing as multiple players for best game" do
@@ -116,6 +115,7 @@ class GameStatsTest < ActiveSupport::TestCase
         worst_game = worst_games.first
         assert_equal game, worst_game.game
         assert_equal 0, worst_game.win_percent
+        assert_equal 1, worst_game.play_count
     end
 
     test "should return top 3 games for worst game" do
@@ -134,12 +134,15 @@ class GameStatsTest < ActiveSupport::TestCase
         worst_game = worst_games.first
         assert_equal game_one, worst_game.game
         assert_equal 0, worst_game.win_percent
+        assert_equal 1, worst_game.play_count
         second_worst = worst_games[1]
         assert_equal game_two, second_worst.game
         assert_equal 0.5, second_worst.win_percent
+        assert_equal 2, second_worst.play_count
         third_worst = worst_games[2]
         assert_equal game_three, third_worst.game
         assert_equal 1, third_worst.win_percent
+        assert_equal 1, third_worst.play_count
     end
 
 
@@ -155,6 +158,7 @@ class GameStatsTest < ActiveSupport::TestCase
         worst_game = worst_games.first
         assert_equal game, worst_game.game
         assert_equal 0.25, worst_game.win_percent
+        assert_equal 4, worst_game.play_count
     end
 
     test "should choose an arbitrary game when tied for worst game" do
@@ -169,6 +173,24 @@ class GameStatsTest < ActiveSupport::TestCase
         worst_game = worst_games.first
         assert_includes [game_one, game_two], worst_game.game
         assert_equal 0, worst_game.win_percent
+        assert_equal 1, worst_game.play_count
+    end
+
+    test "should choose most played game when tied for worst game" do
+        player = create_player
+        game_one = create_game
+        game_two = create_game('other')
+        create_session(game_one, losing_players: [player])
+        create_session(game_two, losing_players: [player])
+        create_session(game_two, losing_players: [player])
+
+        worst_games = player.worst_games
+
+        worst_game = worst_games.first
+        assert_equal game_two, worst_game.game
+        assert_equal 0, worst_game.win_percent
+        assert_equal 2, worst_game.play_count
+
     end
 
     test "should choose worst placing in game when playing as multiple players for worst game" do
@@ -182,6 +204,7 @@ class GameStatsTest < ActiveSupport::TestCase
         worst_game = worst_games.first
         assert_equal game, worst_game.game
         assert_equal 0, worst_game.win_percent
+        assert_equal 1, worst_game.play_count
     end
 
     test "should return 0 for win rate when no games have been played" do

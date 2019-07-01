@@ -51,6 +51,7 @@
           <tr>
             <th>Name</th>
             <th>Win %</th>
+            <th>Play Count</th>
           </tr>
         </thead>
         <tbody>
@@ -58,6 +59,7 @@
             <tr>
               <td><%= link_to worst_game.game.name, worst_game.game %></td>
               <td><%= number_with_precision((worst_game.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %></td>
+              <td><%= worst_game.play_count %></td>
             </tr>
           <% end %>
         </tbody>
