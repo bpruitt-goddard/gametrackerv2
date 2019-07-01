@@ -20,11 +20,11 @@
     </div>
   </div>
 
-<% unless @game.best_player.nil? %>
+<% unless @game.best_players.nil? %>
   <div class="row">
     <div class="col-md-4">
       <table class="table table-bordered">
-        <caption class="caption-top-bold">Best Player</caption>
+        <caption class="caption-top-bold">Best Players</caption>
         <thead>
           <tr>
             <th>Name</th>
@@ -32,10 +32,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><%= link_to @game.best_player.player.name, @game.best_player.player %></td>
-            <td><%= number_with_precision((@game.best_player.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %></td>
-          </tr>
+          <% @game.best_players.each do |best_player| %>
+            <tr>
+              <td><%= link_to best_player.player.name, best_player.player %></td>
+              <td><%= number_with_precision((best_player.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>

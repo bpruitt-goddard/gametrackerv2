@@ -1,19 +1,21 @@
 module Games
     module PlayerStats
         extend ActiveSupport::Concern
+      
+      RESULT_COUNT = 3
 
-      def best_player
-        return to_stats(game_totals.first)
+      def best_players
+        return game_totals.take(RESULT_COUNT).map{|game_total| to_stats(game_total)}
       end
 
       def worst_player
         stats = to_stats(game_totals.last)
 
-        if (!best_player.nil? && !stats.nil? && best_player.win_percent == stats.win_percent)
-          return nil
-        else
+        # if (!best_players.nil? && !stats.nil? && best_player.win_percent == stats.win_percent)
+        #   return nil
+        # else
           return stats
-        end
+        # end
       end
 
       private
