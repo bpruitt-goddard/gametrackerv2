@@ -22,7 +22,7 @@ module Players
             return query_result.map{|game_total| to_percent(game_total)}
         end
 
-        def worst_game
+        def worst_games
             subquery = SessionPlayer.joins(:session)
                            .group('sessions.id, sessions.game_id')
                            .where('player_id = ?', id)
@@ -35,9 +35,9 @@ module Players
                                .select('game_id,
                              sum(subquery.didWin) / count(*)::float as win_percentage')
                                .order('win_percentage asc')
-                               .first
+                               .take(RESULT_COUNT)
     
-            return to_percent(query_result)
+            return query_result.map{|game_total| to_percent(game_total)}
         end
 
         def win_rate

@@ -86,11 +86,38 @@ class GameStatsTest < ActiveSupport::TestCase
         game = create_game
         create_session(game, losing_players: [player])
 
-        worst_game = player.worst_game
+        worst_games = player.worst_games
 
+        assert_equal 1, worst_games.count
+        worst_game = worst_games.first
         assert_equal game, worst_game.game
         assert_equal 0, worst_game.win_percent
     end
+
+    test "should return top 3 games for worst game" do
+        player = create_player
+        game1 = create_game
+        game2 = create_game('game2')
+        game3 = create_game('game3')
+        create_session(game1, losing_players: [player])
+        create_session(game2, losing_players: [player])
+        create_session(game2, winning_players: [player])
+        create_session(game3, winning_players: [player])
+
+        worst_games = player.worst_games
+
+        assert_equal 3, worst_games.count
+        worst_game = worst_games.first
+        assert_equal game1, worst_game.game
+        assert_equal 0, worst_game.win_percent
+        second_worst = worst_games[1]
+        assert_equal game2, second_worst.game
+        assert_equal 0.5, second_worst.win_percent
+        third_worst = worst_games[2]
+        assert_equal game3, third_worst.game
+        assert_equal 1, third_worst.win_percent
+    end
+
 
     test "should calculate win % correctly for worst game" do
         player = create_player
@@ -98,8 +125,10 @@ class GameStatsTest < ActiveSupport::TestCase
         3.times { create_session(game, losing_players: [player]) }
         create_session(game, winning_players: [player])
 
-        worst_game = player.worst_game
+        worst_games = player.worst_games
 
+        assert_equal 1, worst_games.count
+        worst_game = worst_games.first
         assert_equal game, worst_game.game
         assert_equal 0.25, worst_game.win_percent
     end
@@ -111,8 +140,9 @@ class GameStatsTest < ActiveSupport::TestCase
         create_session(game_one, losing_players: [player])
         create_session(game_two, losing_players: [player])
 
-        worst_game = player.worst_game
+        worst_games = player.worst_games
 
+        worst_game = worst_games.first
         assert_includes [game_one, game_two], worst_game.game
         assert_equal 0, worst_game.win_percent
     end
@@ -122,8 +152,10 @@ class GameStatsTest < ActiveSupport::TestCase
         game = create_game
         create_session(game, winning_players: [player], losing_players: [player])
 
-        worst_game = player.worst_game
+        worst_games = player.worst_games
 
+        assert_equal 1, worst_games.count
+        worst_game = worst_games.first
         assert_equal game, worst_game.game
         assert_equal 0, worst_game.win_percent
     end
