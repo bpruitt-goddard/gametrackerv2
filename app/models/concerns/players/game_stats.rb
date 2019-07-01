@@ -14,9 +14,8 @@ module Players
                         .group('game_id')
                         .select('game_id,
                             sum(subquery.didWin) / count(*)::float as win_percentage,
-                            count(*) as count,
-                            sum(subquery.didWin) as win_count')
-                        .order('win_percentage desc')
+                            count(*) as count')
+                        .order('win_percentage desc, count desc')
                         .take(RESULT_COUNT)
 
             return query_result.map{|game_total| to_percent(game_total)}
@@ -33,7 +32,8 @@ module Players
             query_result = Game.from(subquery)
                                .group('game_id')
                                .select('game_id,
-                             sum(subquery.didWin) / count(*)::float as win_percentage')
+                             sum(subquery.didWin) / count(*)::float as win_percentage,
+                             count(*) as count')
                                .order('win_percentage asc')
                                .take(RESULT_COUNT)
     
@@ -60,6 +60,7 @@ module Players
                 game_stats = GameWinPercent.new
                 game_stats.win_percent = game_total.win_percentage
                 game_stats.game = Game.find(game_total.game_id)
+                game_stats.play_count = game_total.count
                 return game_stats
             end
     end
