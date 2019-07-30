@@ -11,17 +11,17 @@
     </div>
   <% end %>
 
-  <div class="form-group col-3">
+  <div class="form-group col-12 col-md-3">
     <%= form.label :name %>
     <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="form-group col-2">
+  <div class="form-group col-10 col-md-2">
     <%= form.label :bgg_id %>
     <%= form.number_field :bgg_id, class: "form-control" %>
   </div>
 
-  <div class="form-group col-2">
+  <div class="form-group col-6 col-md-2">
     <%= form.label :game_type %>
     <%= form.select(:game_type, options_for_select(Game.game_types.map {|k,v| [k.humanize.capitalize, v]}), {}, { :class => 'form-control'}) %>
   </div>
