@@ -17,3 +17,8 @@
     caption-side: top;
     font-weight: bold;
 }
+// TODO move this to a controller-specific file
+.vertical-75 {
+    height: 75vh;
+    overflow: auto;
+}

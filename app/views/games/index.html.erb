@@ -1,31 +1,33 @@
 <h1>Games</h1>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Bgg Id</th>
-      <th>Game Type</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @games.each do |game| %>
+<div class="vertical-75">
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= link_to game.name, game %></td>
-        <td><%= game.bgg_id %></td>
-        <td><%= game.game_type.capitalize %></td>
-        <td>
-          <nav class="nav">
-            <%= link_to 'Edit', edit_game_path(game), class: "nav-link py-0" %>
-            <%= link_to 'Destroy', game, class: "nav-link py-0", method: :delete, data: { confirm: 'Are you sure?' } %>
-          </nav>
-        </td>
+        <th>Name</th>
+        <th>Bgg Id</th>
+        <th>Game Type</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @games.each do |game| %>
+        <tr>
+          <td><%= link_to game.name, game %></td>
+          <td><%= game.bgg_id %></td>
+          <td><%= game.game_type.capitalize %></td>
+          <td>
+            <nav class="nav">
+              <%= link_to 'Edit', edit_game_path(game), class: "nav-link py-0" %>
+              <%= link_to 'Destroy', game, class: "nav-link py-0", method: :delete, data: { confirm: 'Are you sure?' } %>
+            </nav>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
