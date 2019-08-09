@@ -3,7 +3,7 @@ require 'test_helper'
 class SessionTest < ActiveSupport::TestCase
   test "should succeed when session is valid" do
     game = games(:one)
-    session = Session.new(game: game)
+    session = Session.new(game: game, played: Date.new)
     player = session_players(:one)
     session.session_players << player
 

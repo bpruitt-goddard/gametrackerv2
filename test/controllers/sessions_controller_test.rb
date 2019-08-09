@@ -43,6 +43,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     session_params = {
       session: { 
           game_id: @session.game_id,
+          played: Date.new,
           session_players_attributes: [
             { player_id: player_one.id, score: 5, placing: 1}
           ] 
