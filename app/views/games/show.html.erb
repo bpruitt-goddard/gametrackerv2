@@ -46,6 +46,36 @@
     </div>
 
   <% end %>
+  <% if @game.sessions.exists? %>
+  <div class="row">
+    <div class="col-md-6 font-weight-bold">
+      Recent Sessions:
+      <br/>
+      <% @game.sessions.limit(5).each do |session| %>
+            <br/>
+            <%= link_to session.played, session %>
+              <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Score</th>
+                        <th>Placing</th>
+                        <th>Team</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% session.session_players.order(:placing).each do |player| %>
+                      <tr>
+                        <td><%= link_to player.player.name, player.player %></td>
+                        <td><%= number_with_precision(player.score, strip_insignificant_zeros: true) %></td>
+                        <td><%= player.placing %></td>
+                        <td><%= player.team %></td>
+                    <% end %>
+                </tbody>
+              </table>
+      <% end %>
+  </div>
+  <% end %>
 </div>
 
 <%= link_to 'Edit', edit_game_path(@game) %> |
