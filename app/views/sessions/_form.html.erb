@@ -10,33 +10,6 @@
       </ul>
     </div>
   <% end %>
- 
-    <h3>Players:</h3>
-    <table class="table table-striped table-responsive">
-      <thead>
-        <tr>
-          <th>Player</th>
-          <th>Score</th>
-          <th>Placing</th>
-          <th>Team</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id='players'>
-        <%= f.fields_for :session_players do |session_player| %>
-          <%= render 'session_player_fields', :f => session_player %>
-        <% end %>
-      </tbody>
-    </table>
- 
-  <div>
-    <%= link_to_add_association 'add player', f, :session_players, 
-      data: { association_insertion_method: :append, association_insertion_node: '#players'}, class: "nav-link" %>
-  </div>
-  <br/>
-  <br/>
-
-
 
   <div class="form-group col-12 col-md-3">
     <%= f.label :game_id %>
@@ -44,7 +17,7 @@
     <input id="selectedGame" list="games" value="<%= session&.game&.name %>" class="form-control" placeholder="Select Game" />
     <datalist id="games">
       <% Game.order(:name).each do |game| %>
-        <option data-value="<%= game.id%>" value="<%= game.name %>"></option>
+        <option data-value="<%= game.id %>" value="<%= game.name %>" data-iscoop="<%= game.cooperative? %>"></option>
       <% end %>
     </datalist>
   </div>
@@ -53,6 +26,31 @@
     <%= f.label :played %>
     <%= f.date_field :played, as: :date %>
   </div>
+ 
+  <h3>Players:</h3>
+  <table class="table table-striped table-responsive">
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>Score</th>
+        <th>Placing</th>
+        <th>Team</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id='players'>
+      <%= f.fields_for :session_players do |session_player| %>
+        <%= render 'session_player_fields', :f => session_player %>
+      <% end %>
+    </tbody>
+  </table>
+ 
+  <div>
+    <%= link_to_add_association 'add player', f, :session_players, 
+      data: { association_insertion_method: :append, association_insertion_node: '#players'}, class: "nav-link" %>
+  </div>
+  <br/>
+  <br/>
 
   <div class="form-group col-12 col-md-4">
     <%= f.label :notes %>
