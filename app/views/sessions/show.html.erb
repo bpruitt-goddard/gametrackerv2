@@ -50,4 +50,5 @@
 </div>
 
 <%= link_to 'Edit', edit_session_path(@session) %> |
-<%= link_to 'Back', sessions_path %>
+<%= link_to 'Back', sessions_path %> |
+<%= link_to 'Copy As New', copy_session_from_path(:existing_id => @session.id), method: :post %>

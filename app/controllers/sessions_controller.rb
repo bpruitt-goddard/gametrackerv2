@@ -61,6 +61,13 @@ class SessionsController < ApplicationController
     end
   end
 
+  def copy_from_existing
+    @existing_session = Session.find(params[:existing_id])
+    @session = Session.new(@existing_session.attributes)
+    @session.session_players.each { |p| p.id = nil }
+    render :action => :new
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_session
