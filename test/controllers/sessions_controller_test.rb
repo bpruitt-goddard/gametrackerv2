@@ -58,4 +58,10 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to session_url(Session.last)
   end
+
+  test "should copy from existing" do
+    post copy_session_from_path(:existing_id => @session.id)
+    assert_response :success
+    assert_template :new
+  end
 end
