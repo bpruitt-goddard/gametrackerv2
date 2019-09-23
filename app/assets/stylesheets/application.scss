@@ -17,8 +17,12 @@
     caption-side: top;
     font-weight: bold;
 }
-// TODO move this to a controller-specific file
+// TODO move these to a controller-specific file
 .vertical-75 {
     height: 75vh;
     overflow: auto;
+}
+
+.session-forms {
+    display: none;
 }

@@ -17,7 +17,7 @@
     <input id="selectedGame" list="games" value="<%= session&.game&.name %>" class="form-control" placeholder="Select Game" />
     <datalist id="games">
       <% Game.order(:name).each do |game| %>
-        <option data-value="<%= game.id%>" value="<%= game.name %>"></option>
+        <option data-value="<%= game.id%>" value="<%= game.name %>" data-iscoop="<%=game.game_type == Game.game_types[:cooperative]%>"c></option>
       <% end %>
     </datalist>
   </div>
@@ -30,6 +30,10 @@
   <div class="form-group col-12 col-md-4">
     <%= f.label :notes %>
     <%= f.text_field :notes, class: "form-control" %>
+  </div>
+
+  <div id="form_competitive" class="session-forms">
+    <%= render 'session_form_competitive', :f => f, :session_players => @session.session_players %>
   </div>
 
   <div class="actions">

@@ -17,8 +17,17 @@ $(document).on('turbolinks:load', function() {
 
         if (selectedGame.length > 0) {
             var gameId = $(selectedGame[0]).data('value');
-            console.log(gameId);
-            $('#session_game_id').val(gameId);    
+            $('#session_game_id').val(gameId);
+            showFormBasedOnGame();
         }
+    }
+
+    function showFormBasedOnGame() {
+        $('session-forms').hide();
+        $('session-forms input').prop('disabled', true);
+        
+        // TODO add conditional here
+        $('#form_competitive').show();
+        $('#form_competitive input').prop('disabled', false);
     }
 });
