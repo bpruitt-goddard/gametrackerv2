@@ -1,0 +1,22 @@
+<h3>Players:</h3>
+<table class="table table-striped table-responsive">
+    <thead>
+        <tr>
+            <th>Player</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id='coop-players'>
+        <tr class='nested-fields'>
+            <td class='field'><%= f.collection_select :player_id, Player.order(:name), :id, :name, include_blank: true %></td> 
+            <td>
+                <%= link_to_remove_association 'remove', f %>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div>
+    <%= link_to_add_association 'add player', f, :session_players, 
+        data: { association_insertion_method: :append, association_insertion_node: '#coop-players'}, class: "nav-link" %>
+</div>

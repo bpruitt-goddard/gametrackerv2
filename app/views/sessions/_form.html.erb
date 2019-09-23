@@ -36,6 +36,10 @@
     <%= render 'session_form_competitive', :f => f, :session_players => @session.session_players %>
   </div>
 
+  <div id="form_coop" class="session-forms">
+    <%= render 'session_form_coop', :f => f, :session_players => @session.session_players %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
