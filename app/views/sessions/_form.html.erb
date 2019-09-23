@@ -44,12 +44,3 @@
     <%= f.submit %>
   </div>
 <% end %>
-
-<script>
-  //Add a player by default
-  $(document).ready(function() { 
-    if (<%= @session.session_players.empty? %>) {
-      $(".add_fields").click() 
-    }
-  });
-</script>
