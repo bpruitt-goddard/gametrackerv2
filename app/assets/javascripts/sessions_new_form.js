@@ -17,17 +17,23 @@ $(document).on('turbolinks:load', function() {
 
         if (selectedGame.length > 0) {
             var gameId = $(selectedGame[0]).data('value');
+            var isCoop = $(selectedGame[0]).data('iscoop')
             $('#session_game_id').val(gameId);
-            showFormBasedOnGame();
+            showFormBasedOnGame(isCoop);
         }
     }
 
-    function showFormBasedOnGame() {
-        $('session-forms').hide();
-        $('session-forms input').prop('disabled', true);
+    function showFormBasedOnGame(isCoop) {
+        $('.session-forms').hide();
+        $('.session-forms input').prop('disabled', true);
         
-        // TODO add conditional here
-        $('#form_competitive').show();
-        $('#form_competitive input').prop('disabled', false);
+        if(isCoop) {
+            $('#form_coop').show();
+            $('#form_coop input').prop('disabled', false);
+        }
+        else {
+            $('#form_competitive').show();
+            $('#form_competitive input').prop('disabled', false);
+        }
     }
 });
