@@ -5,8 +5,7 @@ class Game < ApplicationRecord
         mixed: "mixed"
     }
 
-    # has_many :recent_sessions, -> { order(played: :desc).limit(5) }, class_name: 'Session', through: 
-    has_many :sessions
+    has_many :sessions, -> {order 'played desc'}
 
     include Games::PlayerStats
 end
