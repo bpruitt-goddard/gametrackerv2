@@ -13,6 +13,15 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-md font-weight-bold">
+      Competitive Win Rate
+    </div>
+    <div class="col-md">
+      <td><%= number_with_precision((@player.competitive_win_rate * 100), precision: 2, strip_insignificant_zeros: true) %></td>%
+    </div>
+  </div>
+
 <% unless @player.best_games.nil? %>
 
   <div class="row">
