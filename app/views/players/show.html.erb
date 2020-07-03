@@ -6,10 +6,27 @@
 <div class="container">
   <div class="row">
     <div class="col-md font-weight-bold">
+      Total Session Count
+    </div>
+    <div class="col-md">
+      <td><%= @player.session_count %></td>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md font-weight-bold">
       Overall Win Rate
     </div>
     <div class="col-md">
       <td><%= number_with_precision((@player.win_rate * 100), precision: 2, strip_insignificant_zeros: true) %></td>%
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md font-weight-bold">
+      Competitive Win Rate
+    </div>
+    <div class="col-md">
+      <td><%= number_with_precision((@player.competitive_win_rate * 100), precision: 2, strip_insignificant_zeros: true) %></td>%
     </div>
   </div>
 

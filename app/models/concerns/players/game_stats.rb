@@ -2,6 +2,16 @@ module Players
     module GameStats
         extend ActiveSupport::Concern
         RESULT_COUNT = 3
+
+        def session_count
+            query_result = SessionPlayer
+                .where('player_id = ?', id)
+                .pluck('DISTINCT session_id')
+                .count()
+                
+            query_result.blank? ? 0 : query_result
+        end
+    
         
         def best_games
             subquery = SessionPlayer.joins(:session)
@@ -46,6 +56,22 @@ module Players
                            .group('sessions.id')
                            .where('player_id = ?', id)
                            .select('CASE MIN("placing") WHEN 1 THEN 1 ELSE 0 END as didWin ')
+    
+            query_result = SessionPlayer
+                .from(subquery)
+                .select('sum(subquery.didWin) / count(*)::float as win_percent')
+    
+            return 0 if query_result.blank?
+            return query_result.to_a[0]['win_percent'] ||= 0
+        end
+
+        def competitive_win_rate
+            subquery = SessionPlayer.joins(:session)
+                            .group('sessions.id')
+                            .where('player_id = ?', id)
+                            .where("sessions.game_id in 
+                                (SELECT id from games g where g.game_type <> 'cooperative')")
+                            .select('CASE MIN("placing") WHEN 1 THEN 1 ELSE 0 END as didWin ')
     
             query_result = SessionPlayer
                 .from(subquery)
