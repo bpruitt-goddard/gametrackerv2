@@ -2,6 +2,16 @@ module Players
     module GameStats
         extend ActiveSupport::Concern
         RESULT_COUNT = 3
+
+        def session_count
+            query_result = SessionPlayer
+                .where('player_id = ?', id)
+                .pluck('DISTINCT session_id')
+                .count()
+                
+            query_result.blank? ? 0 : query_result
+        end
+    
         
         def best_games
             subquery = SessionPlayer.joins(:session)
