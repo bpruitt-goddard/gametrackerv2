@@ -6,7 +6,10 @@ services:
   db:
     restart: always
     image: postgres
-    container_name: postgres_db
+    container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: db
     #tty: true
     volumes:
        - data:/var/lib/postgresql/data
