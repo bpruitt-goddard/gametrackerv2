@@ -10,7 +10,7 @@ An application for tracking board game plays and displaying past results in vari
 1. Build the docker images `docker-compose build`
 1. Create a local docker volume for the database using `docker volume create --name data -d local`. This will allow the database data to persist across docker runs. 
 1. Boot the app using `docker-compose up`
-1. With the app running from (3), create the database with `docker-compose run web rake db:create`, then run any pending database migrations with `docker-compose run web rake db:migrate`.
+1. With the app running from (3), create the database with `docker-compose run web bundle exec rake db:create`, then run any pending database migrations with `docker-compose run web bundle exec rake db:migrate`.
 
 ## Run Tests
 
