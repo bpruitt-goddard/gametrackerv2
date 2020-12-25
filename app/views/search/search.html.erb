@@ -38,7 +38,7 @@
       Win %:
     </div>
     <div class="col-md-6">
-      <%= number_with_precision((@search_stats.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %>
+      <%= number_with_precision((@search_stats.win_percent || 0 * 100), precision: 2, strip_insignificant_zeros: true) %>
     </div>
   </div>
 
