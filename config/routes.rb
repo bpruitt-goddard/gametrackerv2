@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'search/index'
   get 'search/search'
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'user_sessions#new', as: 'login'
