@@ -1,7 +1,7 @@
 <%= form_with url: search_search_path, method: :get, local: true do |f| %>
     <div class="form-group col-5">
         <%= f.label :player_id %>
-        <%= f.hidden_field :player_id %>
+        <%= f.hidden_field :player_id, value: @params[:player_id] %>
         <input id="selectedPlayer" list="players" value="" class="form-control" placeholder="Select Player" />
         <datalist id="players">
             <% @players.order(:name).each do |player| %>
@@ -11,7 +11,7 @@
     </div>
     <div class="form-group col-5">
         <%= f.label :game_id %>
-        <%= f.hidden_field :game_id %>
+        <%= f.hidden_field :game_id, value: @params[:game_id] %>
         <input id="selectedGame" list="games" value="" class="form-control" placeholder="Select Game" />
         <datalist id="games">
             <% @games.order(:name).each do |game| %>
@@ -23,3 +23,25 @@
     <%= f.submit "Search" %>
 
  <% end %>
+ <% unless @search_stats.nil? %>
+  <br>
+  <div class="row">
+    <div class="col-md-6 font-weight-bold">
+      Session Count:
+    </div>
+    <div class="col-md-6">
+      <%= @search_stats.play_count %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 font-weight-bold">
+      Win %:
+    </div>
+    <div class="col-md-6">
+      <%= number_with_precision((@search_stats.win_percent * 100), precision: 2, strip_insignificant_zeros: true) %>
+    </div>
+  </div>
+
+<% end %>
+
+ 
