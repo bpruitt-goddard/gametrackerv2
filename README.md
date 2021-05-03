@@ -5,6 +5,10 @@
 
 An application for tracking board game plays and displaying past results in various statistics (win rates, streakes, best player for game, etc).
 
+
+## V3 Rewrite
+Due to the blackmagic in Ruby on Rails and the struggles with getting adhoc database calls to map to API calls, this project is being (slowly) rewritten using React for the frontend and non-RoR Ruby for the backend. As such, the below instructions will (eventually) be updated to reflect the new build/install/run steps.
+
 ## Build/Install
 
 1. Build the docker images `docker-compose build`
