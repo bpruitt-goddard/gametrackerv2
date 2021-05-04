@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Games from './components/Games';
 import Players from './components/Players';
 import Sessions from './components/Sessions';
+import Search from './components/Search';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/games" component={Games} />
           <Route path="/players" component={Players} />
           <Route path="/sessions" component={Sessions} />
+          <Route path="/search" component={Search} />
         </Switch>
       </div>
     </div>

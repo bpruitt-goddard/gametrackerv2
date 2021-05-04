@@ -35,7 +35,7 @@ function Header() {
                             <NavLink tag={RRNavLink} exact to="/sessions">Sessions</NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                            <NavLink tag={RRNavLink} exact to="/search">Search</NavLink>
                         </NavItem>
                     </Nav>                        
                     <NavbarText>Logged in as TODO</NavbarText>
