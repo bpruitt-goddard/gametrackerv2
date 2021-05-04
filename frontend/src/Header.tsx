@@ -36,6 +36,9 @@ function Header() {
                         </NavItem>
                         <NavItem>
                             <NavLink tag={RRNavLink} exact to="/search">Search</NavLink>
+                      </NavItem>
+                      <NavItem>
+                            <NavLink tag={RRNavLink} exact to="/sessions/new">New Session</NavLink>
                         </NavItem>
                     </Nav>                        
                     <NavbarText>Logged in as TODO</NavbarText>
