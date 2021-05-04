@@ -30,12 +30,15 @@ function Header() {
                       </NavItem>
                       <NavItem>
                             <NavLink tag={RRNavLink} exact to="/players">Players</NavLink>
+                      </NavItem>
+                      <NavItem>
+                            <NavLink tag={RRNavLink} exact to="/sessions">Sessions</NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
                         </NavItem>
                     </Nav>                        
-                    <NavbarText>Simple Text</NavbarText>
+                    <NavbarText>Logged in as TODO</NavbarText>
                 </Collapse>
             </Navbar>
     </div>
