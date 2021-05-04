@@ -27,6 +27,9 @@ function Header() {
                     <Nav className="mr-auto" navbar>
                         <NavItem>
                             <NavLink tag={RRNavLink} exact to="/games">Games</NavLink>
+                      </NavItem>
+                      <NavItem>
+                            <NavLink tag={RRNavLink} exact to="/players">Players</NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
