@@ -1,11 +1,18 @@
 FROM ruby:2.6
 
-WORKDIR /app/backend
+RUN mkdir /app
+WORKDIR   /app
 
-COPY Gemfile ./
-COPY Gemfile.lock ./
+COPY ./Gemfile      /app
+COPY ./Gemfile.lock /app
 
-RUN gem install bundler
-RUN bundle install
+ENV BUNDLE_PATH /tmp/bundle
 
-CMD ["rackup"]
+RUN bundle
+
+ENV RACK_ENV production
+ENV DOCKER   1
+
+COPY . /app
+
+CMD ["bundle", "exec", "rackup"]

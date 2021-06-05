@@ -21,7 +21,7 @@ services:
     volumes:
       - ./backend:/app/backend
     ports:
-      - 3100:3100
+      - 3100:9292
   db:
     restart: always
     image: postgres
