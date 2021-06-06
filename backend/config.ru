@@ -1,3 +1,6 @@
-require_relative 'app'
+require 'rack/unreloader'
 
-run App
+Unreloader = Rack::Unreloader.new(:subclasses=>%w'Roda'){App}
+Unreloader.require './app.rb'
+
+run Unreloader
