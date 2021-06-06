@@ -1,11 +1,11 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "hashie"
-gem "inflecto"
+gem 'hashie', '~> 4.1.0'
+gem 'inflecto', '~> 0.0.2'
 
-gem "oj"
-# gem "haml"
-gem "roda"
+gem 'oj'
+# gem 'haml'
+gem 'roda', '~> 3.44.0'
 
 # docker tmp server (nginx + passenger is ideal)
-gem 'puma'
+gem 'puma', '~> 5.3.2'
