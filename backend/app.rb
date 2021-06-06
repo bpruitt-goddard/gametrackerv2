@@ -3,17 +3,15 @@ require 'roda'
 
 class App < Roda
   plugin :json # TODO: add oj serialization
-  plugin :multi_route
   plugin :all_verbs
   plugin :not_found
   plugin :error_handler
+  plugin :hash_routes
+
+  Unreloader.require('routes') {}
 
   route do |r|
-    r.root {
-      {
-        hello: "hello world!"
-      }
-    }
+    r.hash_routes('')
   end
 
   not_found do
