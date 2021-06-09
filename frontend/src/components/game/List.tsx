@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import { Table } from 'reactstrap';
-import Game from './Game';
+import GameIndex from './Index';
 
 interface game {
     id: number;
@@ -10,16 +10,16 @@ interface game {
     game_type: string;
 }
 
-function Games() {
+function List() {
 
-    const [list, setList] = useState<game[]>([]);
+    const [list, setList] = useState<game[]>([{id: 2, name: 'hello', bgg_id: 55, game_type: 'all'}]);
 
     return (
         <div>
             <h2>Game</h2>
             Game page!
             <Switch>
-                <Route path="/games/:id" component={Game} />
+                <Route path="/games/:id" component={GameIndex} />
                 <Route render={() => GetGames()} />
             </Switch>
         </div>
@@ -41,7 +41,7 @@ function Games() {
                                 return (
                                     <tr key={g.id}>
                                         <th>
-                                            <Link to={`games/${g}`}>{g.name}</Link>
+                                            <Link to={`games/${g.id}`}>{g.name}</Link>
                                         </th>
                                         <th>{g.id}</th>
                                         <th>{g.game_type}</th>
@@ -56,8 +56,4 @@ function Games() {
     }
 }
 
-// function Games() {
-// }
-
-
-export default Games;
+export default List;

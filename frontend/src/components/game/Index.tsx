@@ -5,7 +5,7 @@ interface GameProps {
     id: string;
 }
 
-const Game : FC<RouteComponentProps<GameProps>> = props => {
+const Index : FC<RouteComponentProps<GameProps>> = props => {
     const { id } = props.match.params;
 
     return (
@@ -16,4 +16,4 @@ const Game : FC<RouteComponentProps<GameProps>> = props => {
     );
 }
 
-export default Game;
+export default Index;
