@@ -15,4 +15,4 @@ ENV DOCKER   1
 
 COPY . /app
 
-CMD ["bundle", "exec", "rackup"]
+CMD ["bundle", "exec", "rackup", "-o", "0.0.0.0"]
