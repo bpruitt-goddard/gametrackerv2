@@ -1,0 +1,14 @@
+FROM ruby:2.6
+
+WORKDIR /app
+
+COPY ./Gemfile      /app
+COPY ./Gemfile.lock /app
+
+ENV BUNDLE_PATH /tmp/bundle
+
+RUN bundle
+
+COPY . /app
+
+CMD ["bundle", "exec", "rackup", "-o", "0.0.0.0"]
