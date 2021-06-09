@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Players() {
+function Index() {
     return (
         <div>
             <h2>Players</h2>
@@ -9,4 +9,4 @@ function Players() {
     );
 }
 
-export default Players;
+export default Index;

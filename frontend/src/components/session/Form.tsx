@@ -1,6 +1,6 @@
 import React from 'react';
 
-function NewSession() {
+function Form() {
     return (
         <div>
             <h2>New Session</h2>
@@ -9,4 +9,4 @@ function NewSession() {
     );
 }
 
-export default NewSession;
+export default Form;

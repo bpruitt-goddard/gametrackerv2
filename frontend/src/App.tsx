@@ -5,8 +5,8 @@ import Header from './Header';
 import { Route, Switch } from 'react-router';
 import Home from './components/Home';
 import GameList from './components/game/List';
-import Players from './components/Players';
-import Sessions from './components/Sessions';
+import PlayerList from './components/player/Index';
+import SessionList from './components/session/Index';
 import Search from './components/Search';
 
 function App() {
@@ -17,8 +17,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/games" component={GameList} />
-          <Route path="/players" component={Players} />
-          <Route path="/sessions" component={Sessions} />
+          <Route path="/players" component={PlayerList} />
+          <Route path="/sessions" component={SessionList} />
           <Route path="/search" component={Search} />
         </Switch>
       </div>
