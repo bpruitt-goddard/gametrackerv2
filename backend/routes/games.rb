@@ -1,7 +1,9 @@
 class App
   hash_branch('games') do |r|
     r.get do
-      { message: 'You got the game' }
+      # @games = Game.all
+      # @games.map(&:to_json)
+      { message: 'you got the games'}
     end
   end
 end
