@@ -1,18 +1,12 @@
 import { useState } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import { Table } from 'reactstrap';
+import { IGame } from '../../services/type';
 import GameIndex from './Index';
-
-interface game {
-    id: number;
-    name: string;
-    bgg_id: number;
-    game_type: string;
-}
 
 function List() {
 
-    const [list, setList] = useState<game[]>([{id: 2, name: 'hello', bgg_id: 55, game_type: 'all'}]);
+    const [list, setList] = useState<IGame[]>([{id: 2, name: 'hello', bgg_id: 55, game_type: 'all'}]);
 
     return (
         <div>
