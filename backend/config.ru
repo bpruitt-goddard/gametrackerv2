@@ -12,7 +12,7 @@ Unreloader.require('models') {}
 use Rack::Cors do
     allowed_methods = %i[get post put delete options head]
     allow do
-      origins 'localhost:3000'
+      origins "#{ENV['FRONTEND_URL']}"
       resource '*',
       headers: :any,
       methods: allowed_methods
