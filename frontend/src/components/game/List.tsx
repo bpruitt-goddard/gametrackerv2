@@ -17,8 +17,6 @@ function List() {
 
     return (
         <div>
-            <h2>Game</h2>
-            Game page!
             <Switch>
                 <Route path="/games/:id" component={GameIndex} />
                 <Route render={() => GetGames()} />
