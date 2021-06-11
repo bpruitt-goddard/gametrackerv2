@@ -1,12 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import { Table } from 'reactstrap';
+import { getGames } from '../../services/games';
 import { IGame } from '../../services/type';
 import GameIndex from './Index';
 
 function List() {
+    const [list, setList] = useState<IGame[]>([]);
 
-    const [list, setList] = useState<IGame[]>([{id: 2, name: 'hello', bgg_id: 55, game_type: 'all'}]);
+    useEffect(() => {
+        getGames<IGame[]>()
+          .then(games => {
+            setList(games);
+        })
+    }, [])
 
     return (
         <div>
@@ -24,10 +31,12 @@ function List() {
             <div>
                 <Table>
                     <thead>
-                        <th>Name</th>
-                        <th>Bgg Id</th>
-                        <th>Game Type</th>
-                        <th></th>
+                        <tr>
+                            <th>Name</th>
+                            <th>Bgg Id</th>
+                            <th>Game Type</th>
+                            <th></th>
+                        </tr>
                     </thead>
                     <tbody>
                         {
