@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
-interface GameProps {
+interface IGameProps {
     id: string;
 }
 
-const Index : FC<RouteComponentProps<GameProps>> = props => {
+const Index : FC<RouteComponentProps<IGameProps>> = props => {
     const { id } = props.match.params;
 
     return (
