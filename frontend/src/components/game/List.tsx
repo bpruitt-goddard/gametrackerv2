@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
-import { Table } from 'reactstrap';
+import { Link, NavLink, Route, Switch } from 'react-router-dom';
+import { Button, Table } from 'reactstrap';
 import { getGames } from '../../services/games';
 import { IGame } from '../../services/type';
+import GameEdit from './Edit';
 import GameIndex from './Index';
 
 function List() {
@@ -18,6 +19,7 @@ function List() {
     return (
         <div>
             <Switch>
+                <Route path="/games/:id/edit" component={GameEdit} />
                 <Route path="/games/:id" component={GameIndex} />
                 <Route render={() => GetGames()} />
             </Switch>
@@ -41,11 +43,20 @@ function List() {
                             list.map(g => {
                                 return (
                                     <tr key={g.id}>
-                                        <th>
+                                        <td>
                                             <Link to={`games/${g.id}`}>{g.name}</Link>
-                                        </th>
-                                        <th>{g.id}</th>
-                                        <th>{g.game_type}</th>
+                                        </td>
+                                        <td>{g.id}</td>
+                                        <td>{g.game_type}</td>
+                                        <td>
+                                            <NavLink
+                                                to={`games/${g.id}/edit`}
+                                                color="primary"
+                                                className="btn btn-primary">
+                                                    Edit
+                                            </NavLink>{' '}
+                                            <Button color="danger">Delete</Button>
+                                        </td>
                                     </tr>
                                 );
                             })
