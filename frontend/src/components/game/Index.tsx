@@ -2,10 +2,7 @@ import { FC, useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
 import { IGame } from '../../services/type';
-
-interface IGameProps {
-    id: string;
-}
+import { IGameProps } from './IGameProps';
 
 const Index : FC<RouteComponentProps<IGameProps>> = props => {
     const { id } = props.match.params;
