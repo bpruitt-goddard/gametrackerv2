@@ -1,12 +1,20 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
+import { getGame } from '../../services/games';
 import { IGame } from '../../services/type';
 import { IGameProps } from './IGameProps';
 
 const Index : FC<RouteComponentProps<IGameProps>> = props => {
     const { id } = props.match.params;
-    const [game, setGame] = useState<IGame>({name: 'Gloom', id: 4, bgg_id: 123, game_type: 'competitive'});
+    const [game, setGame] = useState<IGame>();
+
+    useEffect(() => {
+        getGame<IGame>(+id)
+            .then(game => {
+                setGame(game);
+            })
+    }, [])
 
     return (
         <Container>
