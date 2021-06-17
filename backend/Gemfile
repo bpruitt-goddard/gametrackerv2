@@ -14,3 +14,5 @@ gem 'rack-unreloader', '~> 1.7.0'
 gem 'rack-cors', '~>1.1.1'
 gem 'sequel', '~> 5.45.0'
 gem 'sequel_pg', '~> 1.14.0'
+
+gem 'rake', '~>10.0.3', :group => :development
