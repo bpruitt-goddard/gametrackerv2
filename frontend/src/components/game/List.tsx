@@ -31,13 +31,13 @@ function List() {
         return (
             <div>
                 <h1>Games</h1>
-                <Link
-                    to={`games/add`}
+                <NavLink
+                    to={`add`}
                     color="primary"
                     className="btn btn-success"
                     style={{float: 'left'}}>
                         Add
-                </Link>
+                </NavLink>
                 <Table>
                     <thead>
                         <tr>
@@ -53,13 +53,13 @@ function List() {
                                 return (
                                     <tr key={g.id}>
                                         <td>
-                                            <Link to={`games/${g.id}`}>{g.name}</Link>
+                                            <NavLink to={`${g.id}`}>{g.name}</NavLink>
                                         </td>
                                         <td>{g.id}</td>
                                         <td>{g.game_type}</td>
                                         <td>
                                             <NavLink
-                                                to={`games/${g.id}/edit`}
+                                                to={`${g.id}/edit`}
                                                 color="primary"
                                                 className="btn btn-primary">
                                                     Edit
