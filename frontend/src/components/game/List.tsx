@@ -3,7 +3,7 @@ import { Link, NavLink, Route, Switch } from 'react-router-dom';
 import { Button, Table } from 'reactstrap';
 import { getGames } from '../../services/games';
 import { IGame } from '../../services/type';
-import GameEdit from './Edit';
+import GameAddEdit from './AddEdit';
 import GameIndex from './Index';
 
 function List() {
@@ -19,7 +19,8 @@ function List() {
     return (
         <div>
             <Switch>
-                <Route path="/games/:id/edit" component={GameEdit} />
+                <Route path="/games/add" component={GameAddEdit} />
+                <Route path="/games/:id/edit" component={GameAddEdit} />
                 <Route path="/games/:id" component={GameIndex} />
                 <Route render={() => GetGames()} />
             </Switch>
@@ -29,6 +30,14 @@ function List() {
     function GetGames() {
         return (
             <div>
+                <h1>Games</h1>
+                <Link
+                    to={`games/add`}
+                    color="primary"
+                    className="btn btn-success"
+                    style={{float: 'left'}}>
+                        Add
+                </Link>
                 <Table>
                     <thead>
                         <tr>
