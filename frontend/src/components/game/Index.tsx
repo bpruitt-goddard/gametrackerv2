@@ -14,7 +14,7 @@ const Index : FC<RouteComponentProps<IGameProps>> = props => {
             .then(game => {
                 setGame(game);
             })
-    }, [])
+    }, [id]);
 
     return (
         <Container>

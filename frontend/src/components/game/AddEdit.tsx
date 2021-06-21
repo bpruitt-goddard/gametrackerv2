@@ -17,7 +17,7 @@ const AddEdit : FC<RouteComponentProps<IGameProps>> = props => {
           .then(game => {
             setGame(game);
         })
-	}, []);
+	}, [id, isAddMode]);
 
 	function handleChange(event: any) {
 		console.log(GameType.mixed);
