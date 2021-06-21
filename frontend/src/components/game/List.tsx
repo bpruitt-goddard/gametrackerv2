@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, NavLink, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import { Button, Table } from 'reactstrap';
 import { getGames } from '../../services/games';
 import { IGame } from '../../services/type';
@@ -31,13 +31,13 @@ function List() {
         return (
             <div>
                 <h1>Games</h1>
-                <NavLink
-                    to={`add`}
+                <Link
+                    to={`/games/add`}
                     color="primary"
                     className="btn btn-success"
                     style={{float: 'left'}}>
                         Add
-                </NavLink>
+                </Link>
                 <Table>
                     <thead>
                         <tr>
@@ -53,17 +53,17 @@ function List() {
                                 return (
                                     <tr key={g.id}>
                                         <td>
-                                            <NavLink to={`${g.id}`}>{g.name}</NavLink>
+                                            <Link to={`/games/${g.id}`}>{g.name}</Link>
                                         </td>
                                         <td>{g.id}</td>
                                         <td>{g.game_type}</td>
                                         <td>
-                                            <NavLink
-                                                to={`${g.id}/edit`}
+                                            <Link
+                                                to={`/games/${g.id}/edit`}
                                                 color="primary"
                                                 className="btn btn-primary">
                                                     Edit
-                                            </NavLink>{' '}
+                                            </Link>{' '}
                                             <Button color="danger">Delete</Button>
                                         </td>
                                     </tr>
