@@ -20,7 +20,7 @@ class App
       if @game.valid? && @game.save
         @game.to_hash
       else
-        @game.errors
+        r.halt(400, @game.errors)
       end
     end
   end
