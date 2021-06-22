@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Link, RouteComponentProps } from "react-router-dom";
+import { Button, Input, Label } from 'reactstrap';
 import { createGame, getGame } from '../../services/games';
 import { IGame, GameType } from '../../services/type';
 import { IGameProps } from './IGameProps';
@@ -48,8 +49,8 @@ const AddEdit : FC<RouteComponentProps<IGameProps>> = props => {
 			<h1>{isAddMode ? "New Game" : "Editing Game"}</h1>
 
 			<div className="form-group col-12 col-md-3">
-				<label>Name</label>
-				<input
+				<Label for="name">Name</Label>
+				<Input
 					type="text"
 					name="name"
 					value={game.name}
@@ -57,8 +58,8 @@ const AddEdit : FC<RouteComponentProps<IGameProps>> = props => {
 			</div>
 
 			<div className="form-group col-10 col-md-3">
-				<label>Bgg Id</label>
-				<input
+				<Label for="number">Bgg Id</Label>
+				<Input
 					type="number"
 					name="bgg_id"
 					value={game.bgg_id}
@@ -66,8 +67,9 @@ const AddEdit : FC<RouteComponentProps<IGameProps>> = props => {
 			</div>
 
 			<div className="form-group col-6 col-md-2">
-				<label>Game Type</label>
-				<select
+				<Label for="game_type">Game Type</Label>
+				<Input
+					type="select"
 					value={game.game_type}
 					name="game_type"
 					onChange={handleChange}
@@ -80,15 +82,13 @@ const AddEdit : FC<RouteComponentProps<IGameProps>> = props => {
 							{key}
 						</option>
 					))}
-				</select>
+				</Input>
 			</div>
 
 			<div className="form-group">
-				<button
-					type="submit"
-					className="btn btn-primary">
+				<Button>
 					Save
-				</button>
+				</Button>
 				<Link
 					to={isAddMode ? '.' : '..'}
 					className="btn btn-link">
