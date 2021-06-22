@@ -1,6 +1,6 @@
-import { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Link, RouteComponentProps } from "react-router-dom";
-import { getGame } from '../../services/games';
+import { createGame, getGame } from '../../services/games';
 import { IGame, GameType } from '../../services/type';
 import { IGameProps } from './IGameProps';
 
@@ -19,22 +19,32 @@ const AddEdit : FC<RouteComponentProps<IGameProps>> = props => {
         })
 	}, [id, isAddMode]);
 
-	function handleChange(event: any) {
-		console.log(GameType.mixed);
-		let typedColor = GameType['mixed' as keyof typeof GameType];
-		console.log(typedColor);
+	function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
 		setGame({
 			...game,
 			[event.target.name]: event.target.value
 		});
 	}
 
-	function onSubmit() {
-		console.log('submitted game ' + game.name);
+	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+		event.preventDefault();
+
+		return isAddMode
+		 ? addGame()
+		 : updateGame()
+	}
+
+	function addGame() {
+		return createGame(game)
+			.then(() => props.history.push('.'));
+	}
+
+	function updateGame() {
+		console.log('updating game');
 	}
 
 	return (
-		<form onSubmit={onSubmit}>
+		<form onSubmit={handleSubmit}>
 			<h1>{isAddMode ? "New Game" : "Editing Game"}</h1>
 
 			<div className="form-group col-12 col-md-3">

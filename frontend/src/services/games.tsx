@@ -19,3 +19,15 @@ export async function getGame<TGame>(id : number): Promise<TGame> {
     }
     return await (response.json() as Promise<TGame>);
 }
+
+export async function createGame<TGame>(game: TGame): Promise<TGame> {
+    const response = await fetch(`${apiBase}/games`, {
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify(game)
+    });
+    if (!response.ok) {
+        throw new Error(response.statusText);
+    }
+    return await (response.json() as Promise<TGame>);
+}
