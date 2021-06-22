@@ -72,6 +72,9 @@ const AddEdit : FC<RouteComponentProps<IGameProps>> = props => {
 					name="game_type"
 					onChange={handleChange}
 					style={{textTransform: 'capitalize'}}>
+						<option selected disabled hidden>
+							Select Type
+						</option>
 					{Object.keys(GameType).map(key => (
 						<option key={key} value={key} style={{textTransform: 'capitalize'}}>
 							{key}
