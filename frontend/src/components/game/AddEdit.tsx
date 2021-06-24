@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Link, RouteComponentProps } from "react-router-dom";
 import { Button, Input, Label } from 'reactstrap';
-import { createGame, getGame } from '../../services/games';
+import { createGame, getGame, updateGame } from '../../services/games';
 import { IGame, GameType } from '../../services/type';
 import { IGameProps } from './IGameProps';
 
@@ -31,17 +31,18 @@ const AddEdit : FC<RouteComponentProps<IGameProps>> = props => {
 		event.preventDefault();
 
 		return isAddMode
-		 ? addGame()
-		 : updateGame()
+		 ? add()
+		 : update()
 	}
 
-	function addGame() {
+	function add() {
 		return createGame(game)
 			.then(() => props.history.push('.'));
 	}
 
-	function updateGame() {
-		console.log('updating game');
+	function update() {
+		return updateGame(game)
+			.then(() => props.history.push('..'));
 	}
 
 	return (
