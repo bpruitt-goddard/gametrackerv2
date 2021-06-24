@@ -12,7 +12,10 @@ class App
         @game.to_hash
       end
 
-      # TODO: add delete here
+      r.delete do
+        @game.destroy
+        r.halt(204)
+      end
     end
 
     r.get do
