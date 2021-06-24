@@ -31,16 +31,16 @@ const AddEdit : FC<RouteComponentProps<IGameProps>> = props => {
 		event.preventDefault();
 
 		return isAddMode
-		 ? add()
-		 : update()
+		 ? handleAdd()
+		 : handleUpdate()
 	}
 
-	function add() {
+	function handleAdd() {
 		return createGame(game)
 			.then(() => props.history.push('.'));
 	}
 
-	function update() {
+	function handleUpdate() {
 		return updateGame(game)
 			.then(() => props.history.push('..'));
 	}
