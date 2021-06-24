@@ -14,7 +14,7 @@ const AddEdit : FC<RouteComponentProps<IGameProps>> = props => {
 		if (isAddMode)
 			return;
 
-		getGame<IGame>(+id)
+		getGame(+id)
           .then(game => {
             setGame(game);
         })

@@ -10,7 +10,7 @@ const Index : FC<RouteComponentProps<IGameProps>> = props => {
     const [game, setGame] = useState<IGame>();
 
     useEffect(() => {
-        getGame<IGame>(+id)
+        getGame(+id)
             .then(game => {
                 setGame(game);
             })

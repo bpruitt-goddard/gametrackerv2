@@ -10,7 +10,7 @@ function List() {
     const [list, setList] = useState<IGame[]>([]);
 
     useEffect(() => {
-        getGames<IGame[]>()
+        getGames()
           .then(games => {
             setList(games);
         })
