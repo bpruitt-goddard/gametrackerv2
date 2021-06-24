@@ -7,6 +7,7 @@ class App < Roda
   plugin :not_found
   plugin :error_handler
   plugin :hash_routes
+  plugin :halt
 
   Unreloader.require('routes') {}
 
