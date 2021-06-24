@@ -3,6 +3,8 @@ class App
     r.is Integer do |id|
       @game = Game[id]
 
+      return r.halt(404) unless @game
+
       r.get do
         @game.to_hash
       end
