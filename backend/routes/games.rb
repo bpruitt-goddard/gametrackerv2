@@ -7,6 +7,11 @@ class App
         @game.to_hash
       end
 
+      r.put do
+        @game.update(game_params(r))
+        @game.to_hash
+      end
+
       # TODO: add delete here
     end
 
