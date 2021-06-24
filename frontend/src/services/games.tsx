@@ -45,3 +45,13 @@ export async function updateGame(game: IGame): Promise<IGame> {
     }
     return await (response.json() as Promise<IGame>);
 }
+
+export async function deleteGame(id : number) {
+    const response = await fetch(`${apiBase}/games/${id}`, {
+        method: 'DELETE',
+        mode: 'cors'
+    });
+    if (!response.ok) {
+        throw new Error(response.statusText);
+    }
+}

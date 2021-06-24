@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import { Button, Table } from 'reactstrap';
-import { getGames } from '../../services/games';
+import { deleteGame, getGames } from '../../services/games';
 import { IGame } from '../../services/type';
 import GameAddEdit from './AddEdit';
 import GameIndex from './Index';
@@ -15,6 +15,12 @@ function List() {
             setList(games);
         })
     }, [])
+
+    function handleDelete(gameId: number) {
+        return deleteGame(gameId).then(() => {
+            setList(games => games.filter(g => g.id !== gameId));
+        });
+    }
 
     return (
         <div>
@@ -64,7 +70,11 @@ function List() {
                                                 className="btn btn-primary">
                                                     Edit
                                             </Link>{' '}
-                                            <Button color="danger">Delete</Button>
+                                            <Button
+                                                color="danger"
+                                                onClick={() => handleDelete(g.id)}>
+                                                    Delete
+                                            </Button>
                                         </td>
                                     </tr>
                                 );
